@@ -4,7 +4,7 @@ Portail web complet pour une clinique de physiothérapie fictive — projet vitr
 
 ## Démo en ligne
 
-**URL :** (à compléter après déploiement Vercel)
+**URL :** https://clinique-de-physiotherapie.vercel.app
 
 ### Comptes démo
 | Rôle | Email | Mot de passe |
