@@ -71,7 +71,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Clinique Physio Mauricie. Tous droits réservés.
           </p>
           <p className="text-xs text-slate-600">
-            Projet vitrine — <a href="https://github.com/jordydeangelis" className="hover:text-slate-400">Deangelis Dev</a>
+            Projet vitrine — <a href="https://github.com/ChristinNegou" className="hover:text-slate-400">Christin Negou</a>
           </p>
         </div>
       </div>
