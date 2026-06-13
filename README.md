@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clinique Physio Mauricie
 
-## Getting Started
+Portail web complet pour une clinique de physiothérapie fictive — projet vitrine démontrant la capacité à livrer une application avec authentification, base de données relationnelle, dashboard admin et gestion de données sensibles.
 
-First, run the development server:
+## Démo en ligne
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**URL :** (à compléter après déploiement Vercel)
+
+### Comptes démo
+| Rôle | Email | Mot de passe |
+|------|-------|--------------|
+| Patient | `patient@demo.com` | `Demo2024!` |
+| Admin | `admin@physio-mauricie.demo` | `Demo2024!` |
+
+## Stack technique
+
+| Couche | Technologie |
+|--------|-------------|
+| Framework | Next.js 16 (App Router) |
+| Styling | Tailwind CSS v4 |
+| Auth | Supabase Auth |
+| Base de données | Supabase (PostgreSQL) |
+| Emails | Resend |
+| Déploiement | Vercel |
+| Langage | TypeScript 5 |
+
+## Architecture
+
+```
+/ (public)
+├── /                    → Page d'accueil marketing
+├── /services            → Services offerts
+├── /equipe              → Équipe de thérapeutes
+├── /contact             → Contact
+└── /auth/login|signup   → Authentification
+
+/patient (protégé)
+├── /patient/dashboard   → Tableau de bord patient
+├── /patient/rendez-vous → Prise de RDV (stepper 4 étapes)
+└── /patient/profil      → Profil personnel et médical
+
+/admin (rôle admin requis)
+├── /admin/dashboard     → KPIs + agenda du jour
+├── /admin/agenda        → Vue semaine par thérapeute
+├── /admin/patients      → Gestion des patients
+└── /admin/rendez-vous   → Gestion des RDV + export CSV
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# 1. Cloner et installer
+cd projet2
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 2. Configurer les variables d'environnement
+cp .env.local.example .env.local
+# Remplir avec vos clés Supabase et Resend
 
-## Learn More
+# 3. Créer les tables Supabase
+# Exécuter supabase-schema.sql dans l'éditeur SQL Supabase
 
-To learn more about Next.js, take a look at the following resources:
+# 4. Lancer le serveur de développement
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Variables d'environnement
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://xxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
+SUPABASE_SERVICE_ROLE_KEY=xxx
+RESEND_API_KEY=xxx
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-## Deploy on Vercel
+## Configuration Supabase
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Créer un projet sur [supabase.com](https://supabase.com)
+2. Exécuter `supabase-schema.sql` dans l'éditeur SQL
+3. Créer les comptes démo via Authentication > Users
+4. Mettre à jour les rôles dans la table `profiles` :
+   ```sql
+   UPDATE profiles SET role = 'admin' WHERE id = '<uuid-admin>';
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Fonctionnalités
+
+### Pages publiques
+- Page d'accueil avec hero, services, statistiques, CTA
+- Page services avec 5 traitements détaillés
+- Page équipe avec 3 fiches thérapeutes
+- Formulaire de contact
+
+### Espace patient
+- Dashboard avec prochain RDV et historique
+- Prise de RDV en 4 étapes (service → thérapeute → date/heure → confirmation)
+- Gestion du profil personnel et médical (RAMQ masqué)
+
+### Espace admin
+- KPIs : RDV du jour, nouveaux patients, taux d'occupation
+- Agenda hebdomadaire par thérapeute (vue grille)
+- Gestion des patients avec fiche détaillée et notes internes
+- Gestion des RDV avec filtres, confirmation/annulation, export CSV
+
+## Développeur
+
+**Jordy Deangelis** — Développeur web & mobile, Québec  
+Portfolio freelance · 2024

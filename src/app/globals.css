@@ -1,26 +1,42 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "react-day-picker/style.css";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: #0066CC;
+  --color-primary-dark: #0052a3;
+  --color-primary-light: #3385d6;
+  --color-secondary: #00A878;
+  --color-secondary-dark: #008a62;
+  --color-secondary-light: #33ba93;
+  --color-bg: #F8FAFC;
+  --color-bg-dark: #EFF4F9;
+  --color-text: #1E293B;
+  --color-text-muted: #64748B;
+  --color-border: #E2E8F0;
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-lora);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-lora), Georgia, serif;
+}
+
+.rdp-root {
+  --rdp-accent-color: #0066CC;
+  --rdp-accent-background-color: rgba(0, 102, 204, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
 }
