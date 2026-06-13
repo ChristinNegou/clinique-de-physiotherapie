@@ -105,5 +105,5 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ## Développeur
 
-**Jordy Deangelis** — Développeur web & mobile, Québec  
+**Christin Negou** — Développeur web & mobile, Québec  
 Portfolio freelance · 2024
